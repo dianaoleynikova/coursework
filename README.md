@@ -31,7 +31,7 @@ This project follows the MVC pattern:
 ## How to Run
 
 1. Open `index.html` in your browser.
-2. Make sure the `GS` folder with JavaScript files is in the same directory.
+2. Make sure the `js` folder with JavaScript files is in the same directory.
 
 ## Technologies Used
 
