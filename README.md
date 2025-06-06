@@ -7,7 +7,7 @@ Players click buttons to increase their score, with floating text animations app
 coursework/
 ├── index.html
 ├── style.css
-├── GS/
+├── js/
 │   ├── model.js
 │   ├── view.js
 │   ├── controller.js
