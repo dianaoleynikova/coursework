@@ -2,20 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Clicker Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1 id="score">Score: 0</h1>
-      <button id="clickBtn">+1 Click</button>
-      <button id="doubleClickBtn">+2 Click</button>
-      <button id="resetBtn">Reset</button>
+    <div id="game-container">
+      <div id="score">Score: 0</div>
+      <button id="clickBtn">Click me</button>
+      <button id="upgradeClick">Upgrade Click</button>
     </div>
-
-    <script src="js/model.js"></script>
-    <script src="js/view.js"></script>
-    <script src="js/controller.js"></script>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

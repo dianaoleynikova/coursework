@@ -1,23 +1,28 @@
-const view = {
-  scoreDisplay: document.getElementById("score"),
-  clickBtn: document.getElementById("clickBtn"),
-  doubleClickBtn: document.getElementById("doubleClickBtn"),
-  resetBtn: document.getElementById("resetBtn"),
+export class GameView {
+  constructor() {
+    this.scoreDisplay = document.getElementById("score");
+    this.clickButton = document.getElementById("clickBtn");
+    this.upgradeButton = document.getElementById("upgradeClick");
+  }
 
-  updateScoreDisplay(score) {
-    this.scoreDisplay.textContent = "Score: " + score;
-  },
+  // Update the score text
+  updateScore(score, clickPower) {
+    this.scoreDisplay.textContent = `Score: ${score} (Click Power: ${clickPower})`;
+  }
 
-  createFloatingText(text, x, y) {
-    const floatText = document.createElement("div");
-    floatText.className = "floating-text";
-    floatText.textContent = text;
-    floatText.style.left = `${x}px`;
-    floatText.style.top = `${y}px`;
-    document.body.appendChild(floatText);
+  // Show floating "+1", "+2" etc animation on click
+  showClickAnimation(text) {
+    const anim = document.createElement("div");
+    anim.textContent = text;
+    anim.className = "click-animation";
 
-    setTimeout(() => {
-      floatText.remove();
-    }, 1000);
-  },
-};
+    // Random horizontal position near center (to avoid overlap)
+    anim.style.left = `${50 + (Math.random() * 40 - 20)}%`;
+    anim.style.top = "50%";
+
+    document.body.appendChild(anim);
+
+    // Remove animation div after animation ends (0.8s)
+    setTimeout(() => anim.remove(), 800);
+  }
+}

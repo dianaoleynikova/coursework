@@ -1,23 +1,30 @@
-const controller = {
+import { GameModel } from "./model.js";
+import { GameView } from "./view.js";
+
+export class GameController {
+  constructor() {
+    this.model = new GameModel();
+    this.view = new GameView();
+  }
+
   init() {
-    view.clickBtn.addEventListener("click", (e) => {
-      model.increaseScore(1);
-      view.updateScoreDisplay(model.getScore());
-      view.createFloatingText("+1", e.clientX, e.clientY);
+    // Update view when score changes
+    this.model.addObserver((score) => {
+      this.view.updateScore(score, this.model.getClickPower());
     });
 
-    view.doubleClickBtn.addEventListener("click", (e) => {
-      model.increaseScore(2);
-      view.updateScoreDisplay(model.getScore());
-      view.createFloatingText("+2", e.clientX, e.clientY);
+    // Handle main click button
+    this.view.clickButton.addEventListener("click", () => {
+      this.model.incrementScore();
+      this.view.showClickAnimation(`+${this.model.getClickPower()}`);
     });
 
-    view.resetBtn.addEventListener("click", () => {
-      model.resetScore();
-      view.updateScoreDisplay(model.getScore());
+    // Handle upgrade button
+    this.view.upgradeButton.addEventListener("click", () => {
+      this.model.upgradeClick();
     });
 
-    // Початковий показ рахунку
-    view.updateScoreDisplay(model.getScore());
-  },
-};
+    // Initial UI update
+    this.view.updateScore(this.model.getScore(), this.model.getClickPower());
+  }
+}
