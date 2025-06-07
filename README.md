@@ -1,48 +1,82 @@
 # Clicker Game
 
-A simple clicker game built with JavaScript using MVC architecture. This project demonstrates basic game logic, UI updates, and event handling with clean separation of concerns.
+This is a simple clicker game built with JavaScript, HTML, and CSS using the MVC pattern.
+
+---
+
+## Project Structure
+
+- **main.js** – initializes the game by creating a `GameController` instance and starting the game.
+- **controller.js** – connects the model and the view, handles user interactions.
+- **model.js** – holds the game state (score, click power), and logic for updating it.
+- **view.js** – manages the user interface, updating the score display, click animations, and the scoreboard including a playtime timer.
+
+---
 
 ## Features
 
-- Click the "Click me" button to increase your score.
-- Upgrade your click power with the "Upgrade Click" button (doubles the click power).
-- Score updates dynamically on the screen.
-- Animated "+N" effect on each click.
-- Uses Observer pattern to update the UI when the score changes.
-- Code is organized following the Model-View-Controller (MVC) pattern.
+- Increment score by clicking the main button.
+- Upgrade click power to increase points gained per click.
+- Scoreboard shows current score, click power, and elapsed playtime.
+- Floating click animations display the amount gained on each click.
+- Timer shows how long the game has been played since start.
 
-## Technologies Used
-
-- JavaScript (ES6 modules)
-- HTML5
-- CSS3
-
-## File Structure
-
-- `index.html` — Main HTML file containing buttons and score display.
-- `style.css` — Styles for centering buttons and animation effects.
-- `js/`
-  - `model.js` — Contains game logic and state management.
-  - `view.js` — Handles UI updates and animations.
-  - `controller.js` — Connects model and view, handles user input.
-  - `main.js` — Initializes the game controller.
+---
 
 ## How to Run
 
-1. Clone the repository or download the files.
-2. Open `index.html` in a modern browser (supporting ES6 modules).
-3. Click "Click me" to increase score.
-4. Click "Upgrade Click" to double the points earned per click.
+1. Clone or download the repository.
+2. Open `index.html` in your browser.
+3. Click the **Click me** button to increase your score.
+4. Use **Upgrade Click** button to double your click power.
+5. Watch the scoreboard update with score, click power, and elapsed time.
 
-## Explanation
+---
 
-- The **Model** stores the game state (`score`, `clickPower`) and notifies observers on changes.
-- The **View** updates the DOM elements to show the current score and animations.
-- The **Controller** binds UI events (button clicks) to model updates and triggers view updates.
-- The Observer pattern is used for the model to notify the view about score changes, ensuring a clean separation.
+## Code Highlights
 
-## Notes
+- **MVC Pattern:**  
+  The code is organized using the Model-View-Controller pattern to separate concerns:  
+  - Model manages data and logic (score, upgrades).  
+  - View handles UI rendering and animations.  
+  - Controller connects Model and View, listening for user input and updating the game.
 
-- The project uses ES6 modules, so it needs to be served via a local server or opened in a browser that supports modules via the file system.
-- Styling centers the buttons and the score display on the screen.
-- Animations show floating "+N" text on each click.
+- **Observer Pattern:**  
+  The model notifies subscribed observers whenever the score or click power changes, ensuring the view updates reactively.
+
+- **Scoreboard with Timer:**  
+  The scoreboard dynamically displays the current score, click power, and a timer showing elapsed game time formatted as minutes and seconds.
+
+---
+
+## Technologies Used
+
+- Vanilla JavaScript (ES6 modules)
+- HTML5
+- CSS3
+
+---
+
+## File Overview
+
+### main.js
+
+Starts the game by creating the controller instance and calling `init()`.
+
+### controller.js
+
+- Instantiates model and view.
+- Subscribes to model changes and updates the view.
+- Listens to button clicks and triggers model updates.
+
+### model.js
+
+- Keeps track of score and click power.
+- Provides methods to increment score and upgrade click power.
+- Notifies observers about changes.
+
+### view.js
+
+- Updates the score and click power display.
+- Shows floating animations for clicks.
+- Maintains and updates the scoreboard including the timer.
