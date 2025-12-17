@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: blog-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bloguser
+      POSTGRES_PASSWORD: blogpassword
+      POSTGRES_DB: blog_social_network
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bloguser -d blog_social_network"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # pgAdmin для управління БД через веб-інтерфейс
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: blog-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@blog.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres-data:
